@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+use App\Http\Controllers\UploadFileController;
+use App\Http\Controllers\MailSend;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('main');
+});
+// Route::get('/{lang}',function($lang){
+// 	App::setlocale($lang);
+// 	return view('main');
+// });
+Route::get('/uploadfile',[UploadFileController::class,'index']);
+Route::post('/uploadfile',[UploadFileController::class,'show']);
+
+Route::get('/techSupport',[MailSend::class,'mailView']);
+Route::post('/techSupport',[MailSend::class,'mailSend']);
